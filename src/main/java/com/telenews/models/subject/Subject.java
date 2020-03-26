@@ -29,7 +29,7 @@ public class Subject {
     private Set<News> posts = new HashSet<>();
 
     @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name="subject_id")
+    @JoinColumn(name="parent_id")
     private Subject subject;
 
     @OneToMany(mappedBy="subject")

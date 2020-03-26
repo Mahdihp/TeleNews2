@@ -6,6 +6,8 @@ import com.telenews.models.news.repository.NewsRepo;
 import com.telenews.models.role.Role;
 import com.telenews.models.role.RoleName;
 import com.telenews.models.role.repository.RoleRepo;
+import com.telenews.models.subject.Subject;
+import com.telenews.models.subject.repository.SubjectRepo;
 import com.telenews.models.user.User;
 import com.telenews.models.user.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +32,44 @@ public class AppRunner implements CommandLineRunner {
 
     @Autowired
     private PasswordEncoder encoder;
+    @Autowired
+    private SubjectRepo subjectRepo;
 
     @Override
     public void run(String... args) throws Exception {
         addRole();
         addUser();
+        addSuject();
+    }
+
+    private void addSuject() {
+        if (subjectRepo.count() <=0){
+            Subject subject1=new Subject();
+            subject1.setName("سیاسی");
+
+            Subject subject2=new Subject();
+            subject2.setName("اقتصادی");
+            Subject subject22=new Subject();
+            subject22.setName("بازار و تجارت");
+            subject2.setSubject(subject22);
+
+            Subject subject3=new Subject();
+            subject3.setName("اجتماعی");
+
+            Subject subject4=new Subject();
+            subject4.setName("فرهنگی");
+
+            Subject subject5=new Subject();
+            subject5.setName("ورزشی");
+
+            subjectRepo.save(subject1);
+            subjectRepo.save(subject2);
+            subjectRepo.save(subject3);
+            subjectRepo.save(subject4);
+            subjectRepo.save(subject5);
+            System.out.println("Add Subject...");
+
+        }
     }
 
     private void addUser() {
