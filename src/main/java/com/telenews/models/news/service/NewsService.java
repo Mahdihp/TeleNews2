@@ -1,12 +1,11 @@
 package com.telenews.models.news.service;
 
-import com.telenews.config.Constants;
+import com.telenews.common.Constants;
 import com.telenews.models.news.News;
 import com.telenews.models.news.Status;
 import com.telenews.models.news.dto.NewsDto;
 import com.telenews.models.news.dto.NewsForm;
 import com.telenews.models.news.repository.NewsRepo;
-import com.telenews.models.role.Role;
 import com.telenews.models.subject.Subject;
 import com.telenews.models.subject.repository.SubjectRepo;
 import com.telenews.models.user.User;
