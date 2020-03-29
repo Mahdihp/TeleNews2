@@ -2,6 +2,8 @@ package com.telenews.config;
 
 import com.telenews.models.comment.Comment;
 import com.telenews.models.comment.repository.CommentRepo;
+import com.telenews.models.news.News;
+import com.telenews.models.news.Status;
 import com.telenews.models.news.repository.NewsRepo;
 import com.telenews.models.role.Role;
 import com.telenews.models.role.RoleName;
@@ -40,6 +42,22 @@ public class AppRunner implements CommandLineRunner {
         addRole();
         addUser();
         addSuject();
+       // addNews();
+    }
+
+    private void addNews() {
+        News news=new News();
+        news.setStatus(Status.Published);
+        news.setTitle("Title.........");
+        news.setSummary("Title.........");
+        news.setText("Title.........");
+        Set<Subject> subjects = new HashSet<>();
+        Subject save = subjectRepo.findByName("اقتصادی");
+        subjects.add(save);
+        System.out.println("Sub "+save.getId());
+        news.setSubjects(subjects);
+        news.setUser(userRepo.findByUserName("mahdihp").get());
+        newsRepo.save(news);
     }
 
     private void addSuject() {
@@ -63,11 +81,13 @@ public class AppRunner implements CommandLineRunner {
             subject5.setName("ورزشی");
 
             subjectRepo.save(subject1);
-            subjectRepo.save(subject2);
+             subjectRepo.save(subject2);
             subjectRepo.save(subject3);
             subjectRepo.save(subject4);
             subjectRepo.save(subject5);
             System.out.println("Add Subject...");
+
+
 
         }
     }
